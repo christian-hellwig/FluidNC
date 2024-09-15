@@ -53,15 +53,16 @@ namespace Spindles {
         log_debug("Setting VFD dev_speed to " << dev_speed);
 #endif
 
-        //[01] [06] [0201] [07D0] Set frequency to [07D0] = 200.0 Hz. (2000 is written!)
+        //[01] [06] [0121] [1388] Set frequency 50% of max frequency [1388] = 200.0 Hz. (5000 is written!)
+
+        // calculate value in msg
 
         // data.msg[0] is omitted (modbus address is filled in later)
         data.msg[1] = 0x06;  // Set register command
-        data.msg[2] = 0x02;
-        data.msg[3] = 0x01;
-        //data.msg[4] = dev_speed >> 8; - BC 11/24/21
-        data.msg[4] = dev_speed >> 8;
-        data.msg[5] = dev_speed & 0xFF;
+        data.msg[2] = 0x01;
+        data.msg[3] = 0x21;
+        data.msg[4] = (_maxFrequency / dev_speed *10000) >> 8;
+        data.msg[5] = (_maxFrequency / dev_speed *10000) & 0xFF;
     }
 
     // This gets data from the VFD. It does not set any values
