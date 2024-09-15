@@ -63,9 +63,9 @@ So the full messages for start cw, start ccw and stop are as follwing
 
 To set the frequency we have to write to parameter P02.90. Parameter 02.90 is a procentual value of the range set by max frequency P02.18 and min frequency P02.19 with 3 decimal places.
 Lets assume a standard 400Hz 24k RPM Spindle. Frequency range is set from 0 Hz to 400Hz. 
-To set the spindle to run at 12.000 rpm we would have set the vfd to the frequency of 200Hz, which is half of the max value so 50%. With 3 decimal places the data needed to be send is 50000.
+To set the spindle to run at 12.000 rpm we would have set the vfd to the frequency of 200Hz, which is half of the max value so 50%. With 2 decimal places the data needed to be send is 5000.
 Which leads to following message
-[01] [06] [01 20] [c3 50] [d9 30]
+[01] [06] [01 21] [13 88] [d5 6a]
 
 
 Read P02.19 (min frequency) and P02.18 (max frequency):
